@@ -5,11 +5,9 @@ export interface Props {
   title: string;
   description: string;
   id: string;
-  commands: Array<string>;
-  responses: Array<string>;
 }
 
-const { title, description, id, commands, responses } = Astro.props;
+const { title, description, id } = Astro.props;
 ---
 
 <Card id={id}>

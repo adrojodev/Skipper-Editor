@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import InteractionCard from "../components/InteractionCard.astro";
 
 const url = new URL(Astro.request.url);
 const contentUrl = `https://humankind-637da-default-rtdb.firebaseio.com/${url.pathname}.json`;
@@ -9,9 +10,17 @@ const { interactions } = await response.json();
 
 <Layout title="Skipper Bot 🦊">
   {
-    Object.values(interactions).map((interaction: { name: string }) => {
-      return <p>{interaction.name}</p>;
-    })
+    Object.values(interactions).map(
+      (interaction: { name: string; description: string; key: string }) => {
+        return (
+          <InteractionCard
+            id={interaction.key}
+            title={interaction.name}
+            description={interaction.description}
+          />
+        );
+      }
+    )
   }
 </Layout>
 
