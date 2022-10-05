@@ -5,6 +5,7 @@ import EditInteractionButton from "./EditInteractionButton";
 import InputContainer from "./InputContainer.astro";
 import DeleteFieldButton from "./DeleteFieldButton";
 import AddImageButton from "./AddImageButton";
+import AddButton from "./AddButton";
 import SaveSendButton from "./SaveSendButton";
 import CancelButton from "./CancelButton";
 
@@ -41,6 +42,7 @@ const { title, description, id, commands, responses } = Astro.props;
           );
         })
       }
+      <AddButton iconUsed="add" innerText="Add command" client:idle />
     </InputContainer>
     <InputContainer headerText="Responses">
       {
@@ -55,6 +57,7 @@ const { title, description, id, commands, responses } = Astro.props;
           );
         })
       }
+      <AddButton iconUsed="add" innerText="Add response" client:idle />
     </InputContainer>
     <div class="inputAddButtons">
       <SaveSendButton

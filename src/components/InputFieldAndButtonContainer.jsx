@@ -1,6 +1,7 @@
 import React from "react";
 import AddImageButton from "./AddImageButton";
 import DeleteFieldButton from "./DeleteFieldButton";
+import "../styles/inputs.css";
 
 const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
   let isVisibleOrNot;
@@ -25,12 +26,10 @@ const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
           placeholder={typeOfInput}
           onChange={deleteEmptyClass}
         />
-
-        <AddImageButton visible="none"></AddImageButton>
         <DeleteFieldButton isVisible={isVisible}></DeleteFieldButton>
       </div>
     );
-  } else {
+  } else if (typeOfInput == "Response") {
     return (
       <div className="inputFieldContainer">
         <textarea
