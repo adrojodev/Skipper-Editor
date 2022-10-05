@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import InteractionCard from "../components/InteractionCard.astro";
 import Card from "../components/Card.astro";
 import Header from "../components/Header.astro";
+import InputContainer from "../components/InputContainer.astro";
+import InputFieldAndButtonContainer from "../components/InputFieldAndButtonContainer";
 
 const url = new URL(Astro.request.url);
 const contentUrl = `https://humankind-637da-default-rtdb.firebaseio.com/${url.pathname}.json`;
@@ -13,6 +15,29 @@ const { interactions } = await response.json();
 <Layout title="Skipper Bot 🦊">
   <Card id="inputCard">
     <Header headerSize="medium" id="cardHeader">New interaction ✨</Header>
+    <InputContainer headerText="Interaction info">
+      <input
+        type="text"
+        placeholder="Name"
+        class="inputComponent"
+        id="nameInput"
+        onchange="deleteEmptyClassHome(this)"
+      />
+      <input
+        type="text"
+        placeholder="Description"
+        class="inputComponent"
+        id="descriptionInput"
+        onchange="deleteEmptyClassHome(this)"
+      />
+    </InputContainer>
+    <InputContainer headerText="Commands">
+      <InputFieldAndButtonContainer
+        typeOfInput="Command"
+        isVisible="no"
+        client:load
+      />
+    </InputContainer>
   </Card>
   <div class="interactionsListing">
     {
