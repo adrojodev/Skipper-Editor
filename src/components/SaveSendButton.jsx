@@ -103,7 +103,7 @@ const SaveSendButton = ({ innerText, iconUsed, buttonType }) => {
       className={"button " + buttonType + "Button"}
       onClick={addInteraction}
     >
-      <span className="material-icons">{iconUsed}</span>
+      <span className="material-icons white">{iconUsed}</span>
       {innerText}
     </button>
   );
