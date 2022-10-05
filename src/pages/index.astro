@@ -5,6 +5,9 @@ import Card from "../components/Card.astro";
 import Header from "../components/Header.astro";
 import InputContainer from "../components/InputContainer.astro";
 import InputFieldAndButtonContainer from "../components/InputFieldAndButtonContainer";
+import AddButton from "../components/AddButton";
+import SaveSendButton from "../components/SaveSendButton";
+import CancelButton from "../components/CancelButton";
 
 const url = new URL(Astro.request.url);
 const contentUrl = `https://humankind-637da-default-rtdb.firebaseio.com/${url.pathname}.json`;
@@ -37,6 +40,7 @@ const { interactions } = await response.json();
         isVisible="no"
         client:load
       />
+      <AddButton iconUsed="add" innerText="Add command" client:idle />
     </InputContainer>
     <InputContainer headerText="Responses">
       <InputFieldAndButtonContainer
@@ -44,7 +48,17 @@ const { interactions } = await response.json();
         isVisible="no"
         client:load
       />
+      <AddButton iconUsed="add" innerText="Add response" client:idle />
     </InputContainer>
+    <div class="inputAddButtons">
+      <SaveSendButton
+        client:load
+        innerText="Create interaction"
+        iconUsed=""
+        buttonType="small"
+      />
+      <CancelButton client:load />
+    </div>
   </Card>
   <div class="interactionsListing">
     {

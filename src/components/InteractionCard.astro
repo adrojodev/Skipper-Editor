@@ -9,6 +9,8 @@ import AddButton from "./AddButton";
 import SaveSendButton from "./SaveSendButton";
 import CancelButton from "./CancelButton";
 
+import "../styles/buttons.css";
+
 export interface Props {
   title: string;
   description: string;
@@ -108,11 +110,5 @@ const { title, description, id, commands, responses } = Astro.props;
   }
   .inputComponent:focus {
     background-color: #e3e3e3;
-  }
-  .inputAddButtons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
   }
 </style>

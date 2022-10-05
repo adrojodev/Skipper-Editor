@@ -71,3 +71,9 @@ a {
   margin-right: auto;
   font-family: "TTCommonsProBold";
 }
+.inputAddButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}

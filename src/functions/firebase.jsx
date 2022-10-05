@@ -57,7 +57,10 @@ export async function saveNewCommandOnDatabase(
     description: description,
     commands: commands,
     responses: responses,
-  }).then(() => {
+  }).then((snapshot) => {
+    push(ref(database, `/interactions/${snapshot.key}`), {
+      key: snapshot.key,
+    });
     window.location.reload();
   });
 }

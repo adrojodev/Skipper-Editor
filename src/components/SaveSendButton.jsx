@@ -24,7 +24,7 @@ const SaveSendButton = ({ innerText, iconUsed, buttonType }) => {
         }
       });
       if (emptyCheck) {
-        if (buttonText == "Add interaction") {
+        if (buttonText == "Create interaction") {
           let interactionName = document.getElementById("nameInput").value;
           let interactionDescription =
             document.getElementById("descriptionInput").value;
