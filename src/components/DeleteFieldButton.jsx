@@ -5,7 +5,7 @@ const DeleteFieldButton = ({ isVisible }) => {
   let isVisibleOrNot;
 
   function deleteThisItem(e) {
-    e.target.parentNode.parentNode.parentNode.remove();
+    e.target.parentNode.parentNode.remove();
   }
 
   if (isVisible == "yes") {
@@ -20,7 +20,7 @@ const DeleteFieldButton = ({ isVisible }) => {
       style={{ display: isVisibleOrNot }}
       onClick={deleteThisItem}
     >
-      <span className="material-icons">close</span>
+      <span className="material-icons small-button-icon">close</span>
     </button>
   );
 };

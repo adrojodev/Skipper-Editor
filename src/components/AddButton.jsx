@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import InputFieldAndButtonContainer from "./InputFieldAndButtonContainer";
+import "../styles/buttons.css";
 
 const AddButton = ({ innerText, iconUsed }) => {
   const [components, setComponents] = useState([]);
