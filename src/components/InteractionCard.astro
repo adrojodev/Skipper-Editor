@@ -10,9 +10,10 @@ export interface Props {
   description: string;
   id: string;
   commands: Array<string>;
+  responses: Array<string>;
 }
 
-const { title, description, id, commands } = Astro.props;
+const { title, description, id, commands, responses } = Astro.props;
 ---
 
 <Card id={id}>
@@ -31,6 +32,22 @@ const { title, description, id, commands } = Astro.props;
                 type="text"
                 class="commandInput inputComponent"
                 value={command}
+              />
+              <DeleteFieldButton isVisible="yes" client:load />
+            </div>
+          );
+        })
+      }
+    </InputContainer>
+    <InputContainer headerText="Responses">
+      {
+        responses.map((response) => {
+          return (
+            <div class="inputFieldContainer">
+              <input
+                type="text"
+                class="commandInput inputComponent"
+                value={response}
               />
               <DeleteFieldButton isVisible="yes" client:load />
             </div>
