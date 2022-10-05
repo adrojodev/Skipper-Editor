@@ -1,0 +1,23 @@
+---
+import Header from "./Header.astro";
+
+export interface Props {
+  headerText: string;
+}
+
+const { headerText } = Astro.props;
+---
+
+<div class="inputContainer">
+  <Header headerSize="small" id="addCommandHeader">{headerText}</Header>
+  <slot />
+</div>
+
+<style>
+  .inputContainer {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+</style>

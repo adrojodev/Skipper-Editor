@@ -1,22 +1,44 @@
 ---
 import Card from "./Card.astro";
 import Header from "./Header.astro";
+import EditInteractionButton from "./EditInteractionButton";
+import InputContainer from "./InputContainer.astro";
+import DeleteFieldButton from "./DeleteFieldButton";
 
 export interface Props {
   title: string;
   description: string;
   id: string;
+  commands: Array<string>;
 }
 
-const { title, description, id } = Astro.props;
+const { title, description, id, commands } = Astro.props;
 ---
 
 <Card id={id}>
   <div class="titleContainer">
     <Header headerSize="big" id="interactionCardTitle">{title}</Header>
+    <EditInteractionButton client:load />
   </div>
   <p class="interactionDescription">{description}</p>
-  <div id="addInteractionContainer"></div>
+  <div id="addInteractionContainer">
+    <InputContainer headerText="Commands">
+      {
+        commands.map((command) => {
+          return (
+            <div class="inputFieldContainer">
+              <input
+                type="text"
+                class="commandInput inputComponent"
+                value={command}
+              />
+              <DeleteFieldButton isVisible="yes" client:load />
+            </div>
+          );
+        })
+      }
+    </InputContainer>
+  </div>
 </Card>
 
 <style>
@@ -33,5 +55,28 @@ const { title, description, id } = Astro.props;
     display: none;
     flex-direction: column;
     gap: 24px;
+  }
+  .inputFieldContainer {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    column-gap: 8px;
+  }
+  .inputComponent {
+    font-family: "TTCommonsProDemiBold";
+    border: none;
+    font-size: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #f3f3f3;
+    border-radius: 16px;
+    outline: none;
+    resize: vertical;
+    text-align: left;
+    white-space: pre;
+  }
+  .inputComponent:focus {
+    background-color: #e3e3e3;
   }
 </style>

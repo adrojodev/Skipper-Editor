@@ -11,12 +11,18 @@ const { interactions } = await response.json();
 <Layout title="Skipper Bot 🦊">
   {
     Object.values(interactions).map(
-      (interaction: { name: string; description: string; key: string }) => {
+      (interaction: {
+        name: string;
+        description: string;
+        key: string;
+        commands: string[];
+      }) => {
         return (
           <InteractionCard
             id={interaction.key}
             title={interaction.name}
             description={interaction.description}
+            commands={interaction.commands}
           />
         );
       }
