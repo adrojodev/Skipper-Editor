@@ -1,3 +1,32 @@
+.button {
+  background-color: black;
+  font-size: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  font-family: "TTCommonsProDemiBold";
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+}
+a {
+  color: black;
+}
+.button:hover {
+  background-color: #222222;
+}
+.smallButton {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 16px;
+}
 .iconButton {
   background-color: transparent;
   border: 2px solid black;
@@ -28,4 +57,17 @@
   width: 40px;
   height: 40px;
   margin-left: -8px;
+}
+.text-button {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 16px;
+  padding: 0px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  width: auto;
+  margin-right: auto;
+  font-family: "TTCommonsProBold";
 }

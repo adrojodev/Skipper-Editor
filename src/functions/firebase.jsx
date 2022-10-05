@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getDatabase, push, ref, set } from "firebase/database";
 import {
   getStorage,
   uploadBytes,
@@ -17,6 +18,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+const database = getDatabase();
 const storage = getStorage();
 
 function uuidv4() {
@@ -38,5 +41,40 @@ export function uploadImages(inputComponent) {
         "textarea"
       )[0].value += ` \n\n${String(url)};`;
     });
+  });
+}
+
+export async function saveNewCommandOnDatabase(
+  name,
+  description,
+  commands,
+  responses
+) {
+  const elementPath = ref(database, `/interactions/`);
+
+  push(elementPath, {
+    name: name,
+    description: description,
+    commands: commands,
+    responses: responses,
+  }).then(() => {
+    window.location.reload();
+  });
+}
+
+export function changeInteractionOfDatabase(
+  elementID,
+  name,
+  description,
+  commands,
+  responses
+) {
+  set(ref(database, `interactions/${elementID}`), {
+    commands: commands,
+    responses: responses,
+    name: name,
+    description: description,
+  }).then(() => {
+    window.location.reload();
   });
 }

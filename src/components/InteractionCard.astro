@@ -5,6 +5,8 @@ import EditInteractionButton from "./EditInteractionButton";
 import InputContainer from "./InputContainer.astro";
 import DeleteFieldButton from "./DeleteFieldButton";
 import AddImageButton from "./AddImageButton";
+import SaveSendButton from "./SaveSendButton";
+import CancelButton from "./CancelButton";
 
 export interface Props {
   title: string;
@@ -19,7 +21,7 @@ const { title, description, id, commands, responses } = Astro.props;
 
 <Card id={id}>
   <div class="titleContainer">
-    <Header headerSize="big" id="interactionCardTitle">{title}</Header>
+    <Header headerSize="medium" id="interactionCardTitle">{title}</Header>
     <EditInteractionButton client:load />
   </div>
   <p class="interactionDescription">{description}</p>
@@ -54,6 +56,15 @@ const { title, description, id, commands, responses } = Astro.props;
         })
       }
     </InputContainer>
+    <div class="inputAddButtons">
+      <SaveSendButton
+        client:load
+        innerText="Save changes"
+        iconUsed=""
+        buttonType="small"
+      />
+      <CancelButton client:load />
+    </div>
   </div>
 </Card>
 
@@ -94,5 +105,11 @@ const { title, description, id, commands, responses } = Astro.props;
   }
   .inputComponent:focus {
     background-color: #e3e3e3;
+  }
+  .inputAddButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
   }
 </style>

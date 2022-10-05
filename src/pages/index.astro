@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import InteractionCard from "../components/InteractionCard.astro";
+import Card from "../components/Card.astro";
+import Header from "../components/Header.astro";
 
 const url = new URL(Astro.request.url);
 const contentUrl = `https://humankind-637da-default-rtdb.firebaseio.com/${url.pathname}.json`;
@@ -9,27 +11,38 @@ const { interactions } = await response.json();
 ---
 
 <Layout title="Skipper Bot 🦊">
-  {
-    Object.values(interactions).map(
-      (interaction: {
-        name: string;
-        description: string;
-        key: string;
-        commands: string[];
-        responses: string[];
-      }) => {
-        return (
-          <InteractionCard
-            id={interaction.key}
-            title={interaction.name}
-            description={interaction.description}
-            commands={interaction.commands}
-            responses={interaction.responses}
-          />
-        );
-      }
-    )
-  }
+  <Card id="inputCard">
+    <Header headerSize="medium" id="cardHeader">New interaction ✨</Header>
+  </Card>
+  <div class="interactionsListing">
+    {
+      Object.values(interactions).map(
+        (interaction: {
+          name: string;
+          description: string;
+          key: string;
+          commands: string[];
+          responses: string[];
+        }) => {
+          return (
+            <InteractionCard
+              id={interaction.key}
+              title={interaction.name}
+              description={interaction.description}
+              commands={interaction.commands}
+              responses={interaction.responses}
+            />
+          );
+        }
+      )
+    }
+  </div>
 </Layout>
 
-<style></style>
+<style>
+  .interactionsListing {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+</style>
