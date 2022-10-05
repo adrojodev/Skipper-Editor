@@ -37,6 +37,7 @@ const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
           className={typeOfInput.toLowerCase() + "Input inputComponent"}
           placeholder={typeOfInput}
           onChange={deleteEmptyClass}
+          wrap="hard"
         />
 
         <AddImageButton visible={isVisibleOrNot}></AddImageButton>

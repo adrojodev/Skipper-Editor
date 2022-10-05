@@ -52,7 +52,7 @@ const { title, description, id, commands, responses } = Astro.props;
           //prettier-ignore
           return (
             <div class="inputFieldContainer">
-              <textarea class="responseInput inputComponent">{response}</textarea>
+              <textarea class="responseInput inputComponent" wrap="hard">{response}</textarea>
               <AddImageButton isVisible="yes" client:load />
               <DeleteFieldButton isVisible="yes" client:load />
             </div>
