@@ -16,6 +16,7 @@ const { interactions } = await response.json();
 ---
 
 <Layout title="Skipper Bot 🦊">
+  <Header headerSize="big" id="headerTitle">Skipper Bot 🦊</Header>
   <Card id="inputCard">
     <Header headerSize="medium" id="cardHeader">New interaction ✨</Header>
     <InputContainer headerText="Interaction info">
@@ -60,6 +61,12 @@ const { interactions } = await response.json();
       <CancelButton client:load />
     </div>
   </Card>
+  <SaveSendButton
+    client:load
+    innerText="New interaction"
+    iconUsed="add"
+    buttonType="normal"
+  />
   <div class="interactionsListing">
     {
       Object.values(interactions).map(
