@@ -28,7 +28,7 @@ const { title, description, id, commands, responses } = Astro.props;
     <EditInteractionButton client:load />
   </div>
   <p class="interactionDescription">{description}</p>
-  <div id="addInteractionContainer">
+  <div id="addInteractionContainer" class="addInteractionContainer">
     <InputContainer headerText="Commands">
       {
         commands.map((command) => {
