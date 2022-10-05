@@ -1,0 +1,28 @@
+---
+export interface Props {
+  headerSize: string;
+  id: string;
+}
+
+const { headerSize, id } = Astro.props;
+---
+
+<h1 class={"header " + headerSize} id={id}>
+  <slot />
+</h1>
+
+<style>
+  .header {
+    margin: 0px;
+    font-family: "TTCommonsProBold";
+  }
+  .big {
+    font-size: 40px;
+  }
+  .medium {
+    font-size: 28px;
+  }
+  .small {
+    font-size: 20px;
+  }
+</style>
