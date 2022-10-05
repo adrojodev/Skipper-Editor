@@ -4,6 +4,7 @@ import Header from "./Header.astro";
 import EditInteractionButton from "./EditInteractionButton";
 import InputContainer from "./InputContainer.astro";
 import DeleteFieldButton from "./DeleteFieldButton";
+import AddImageButton from "./AddImageButton";
 
 export interface Props {
   title: string;
@@ -42,13 +43,11 @@ const { title, description, id, commands, responses } = Astro.props;
     <InputContainer headerText="Responses">
       {
         responses.map((response) => {
+          //prettier-ignore
           return (
             <div class="inputFieldContainer">
-              <input
-                type="text"
-                class="commandInput inputComponent"
-                value={response}
-              />
+              <textarea class="responseInput inputComponent">{response}</textarea>
+              <AddImageButton isVisible="yes" client:load />
               <DeleteFieldButton isVisible="yes" client:load />
             </div>
           );
