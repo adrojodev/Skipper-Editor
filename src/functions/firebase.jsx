@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, ref, set } from "firebase/database";
+import { getDatabase, push, ref, set, updateDoc } from "firebase/database";
 import {
   getStorage,
   uploadBytes,
@@ -58,7 +58,7 @@ export async function saveNewCommandOnDatabase(
     commands: commands,
     responses: responses,
   }).then((snapshot) => {
-    set(ref(database, `/interactions/${snapshot.key}`), {
+    updateDoc(ref(database, `/interactions/${snapshot.key}`), {
       key: snapshot.key,
     });
     window.location.reload();
