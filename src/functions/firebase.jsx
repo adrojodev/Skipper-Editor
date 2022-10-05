@@ -77,6 +77,7 @@ export function changeInteractionOfDatabase(
     responses: responses,
     name: name,
     description: description,
+    key: elementID,
   }).then(() => {
     window.location.reload();
   });
