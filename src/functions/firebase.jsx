@@ -3,8 +3,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  setPersistence,
-  inMemoryPersistence,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getDatabase, push, ref, set, update } from "firebase/database";
 import {
@@ -32,7 +31,13 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export function checkIfLoggedIn() {
-  console.log(auth.currentUser);
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(uid);
+    } else {
+      console.log("no");
+    }
+  });
 }
 export function login() {
   signInWithPopup(auth, provider).then((result) => {
@@ -45,15 +50,7 @@ export function login() {
     const domain = email.substring(email.lastIndexOf("@") + 1);
 
     if (domain == "humankind.art") {
-      setPersistence(auth, inMemoryPersistence)
-        .then(() => {
-          const provider = new GoogleAuthProvider();
-          return signInWithRedirect(auth, provider);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        });
+      window.location.href = "/";
     } else {
       window.location.href = "https://humankind.art";
     }

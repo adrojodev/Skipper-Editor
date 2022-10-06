@@ -43,10 +43,13 @@
 }
 #signButton {
   margin-top: 32px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   display: inline-block;
-  background: #ffffff;
-  color: #000000;
-  width: 190px;
+  background: #000000;
+  color: #ffffff;
+  padding-left: 24px;
+  padding-right: 24px;
   border-radius: 16px;
   white-space: nowrap;
   cursor: pointer;
@@ -54,18 +57,7 @@
 #signButton:hover {
   cursor: pointer;
 }
-span.icon {
-  background: url("g-logo.png");
-  background-position: 50%;
-  background-size: 50% 50%;
-  background-repeat: no-repeat;
-  display: inline-block;
-  vertical-align: middle;
-  width: 42px;
-  height: 42px;
-}
 span.buttonText {
   font-size: 14px;
   font-weight: bold;
-  padding-right: 16px;
 }
