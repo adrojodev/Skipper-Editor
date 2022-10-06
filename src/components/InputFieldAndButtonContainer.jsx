@@ -1,7 +1,6 @@
 import React from "react";
 import AddImageButton from "./AddImageButton";
 import DeleteFieldButton from "./DeleteFieldButton";
-import "../styles/inputs.css";
 
 const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
   let isVisibleOrNot;
@@ -15,6 +14,10 @@ const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
 
   function deleteEmptyClass(e) {
     e.target.classList.remove("emptyInput");
+  }
+
+  function textAreaAdjust(element) {
+    console.log("hola");
   }
 
   if (typeOfInput == "Command") {
@@ -32,13 +35,15 @@ const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
   } else if (typeOfInput == "Response") {
     return (
       <div className="inputFieldContainer">
-        <textarea
-          type="text"
-          className={typeOfInput.toLowerCase() + "Input inputComponent"}
-          placeholder={typeOfInput}
-          onChange={deleteEmptyClass}
-          wrap="hard"
-        />
+        <div className="textareaWrap">
+          <textarea
+            type="text"
+            className={typeOfInput.toLowerCase() + "Input inputComponent"}
+            placeholder={typeOfInput}
+            onChange={deleteEmptyClass}
+            onKeyUp={textAreaAdjust}
+          />
+        </div>
 
         <AddImageButton visible={isVisibleOrNot}></AddImageButton>
         <DeleteFieldButton isVisible={isVisible}></DeleteFieldButton>
