@@ -10,8 +10,7 @@ import SaveSendButton from "../components/SaveSendButton";
 import CancelButton from "../components/CancelButton";
 import LogInComponent from "../components/AuthComponent";
 
-const url = new URL(Astro.request.url);
-const contentUrl = `https://humankind-637da-default-rtdb.firebaseio.com/${url.pathname}.json`;
+const contentUrl = `https://humankind-637da-default-rtdb.firebaseio.com/${Astro.url.pathname}.json`;
 const response = await fetch(contentUrl);
 const { interactions } = await response.json();
 ---

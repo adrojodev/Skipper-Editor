@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  setPersistence,
+  inMemoryPersistence,
+} from "firebase/auth";
 import { getDatabase, push, ref, set, update } from "firebase/database";
 import {
   getStorage,
@@ -22,33 +28,36 @@ const app = initializeApp(firebaseConfig);
 
 const database = getDatabase();
 const storage = getStorage();
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export function login(element) {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
+export function checkIfLoggedIn() {
+  console.log(auth.currentUser);
+}
+export function login() {
+  signInWithPopup(auth, provider).then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    const email = user.email;
+    const domain = email.substring(email.lastIndexOf("@") + 1);
 
-      console.log(result);
-      // ...
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-
-      console.log(error);
-      // ...
-    });
+    if (domain == "humankind.art") {
+      setPersistence(auth, inMemoryPersistence)
+        .then(() => {
+          const provider = new GoogleAuthProvider();
+          return signInWithRedirect(auth, provider);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    } else {
+      window.location.href = "https://humankind.art";
+    }
+  });
 }
 
 function uuidv4() {
