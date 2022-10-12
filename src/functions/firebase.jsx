@@ -3,7 +3,8 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  onAuthStateChanged,
+  signOut,
+  deleteUser,
 } from "firebase/auth";
 import { getDatabase, push, ref, set, update } from "firebase/database";
 import {
@@ -30,30 +31,29 @@ const storage = getStorage();
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export function checkIfLoggedIn() {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log(uid);
-    } else {
-      console.log("no");
-    }
-  });
-}
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
 export function login() {
   signInWithPopup(auth, provider).then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
-    // The signed-in user info.
     const user = result.user;
     const email = user.email;
     const domain = email.substring(email.lastIndexOf("@") + 1);
-
     if (domain == "humankind.art") {
-      window.location.href = "/";
+      window.location.replace("/");
     } else {
-      window.location.href = "https://humankind.art";
+      signOut(auth).then(() => {
+        deleteUser(result.user).then(() => {
+          alert("You need to be part of Humankind team to use this app");
+          window.location.reload();
+        });
+      });
     }
+    // The signed-in user info.
   });
 }
 

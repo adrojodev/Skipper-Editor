@@ -8,7 +8,7 @@ import InputFieldAndButtonContainer from "../components/InputFieldAndButtonConta
 import AddButton from "../components/AddButton";
 import SaveSendButton from "../components/SaveSendButton";
 import CancelButton from "../components/CancelButton";
-import LogInComponent from "../components/AuthComponent";
+import "../styles/inputs.css";
 
 const contentUrl = `https://humankind-637da-default-rtdb.firebaseio.com/${Astro.url.pathname}.json`;
 const response = await fetch(contentUrl);
@@ -16,6 +16,37 @@ const { interactions } = await response.json();
 ---
 
 <Layout title="Skipper Bot">
+  <script is:inline type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCbDLF09yn8kxHXfnULe7fraIwXMdMEx4M",
+      messagingSenderId: "707375406570",
+      appId: "1:707375406570:web:7ddbf35bca0f36d1f62693",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const email = user.email;
+        const domain = email.substring(email.lastIndexOf("@") + 1);
+
+        if (domain == "humankind.art") {
+          document.body.style.overflow = "auto";
+        } else {
+          window.location.replace("https://humankind.art");
+        }
+      } else {
+        window.location.replace("/login");
+      }
+    });
+  </script>
   <Header headerSize="big" id="headerTitle">Skipper Bot 🦊</Header>
   <Card id="inputCard">
     <Header headerSize="medium" id="cardHeader">New interaction ✨</Header>

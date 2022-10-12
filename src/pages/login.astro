@@ -1,11 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import LogInComponent from "../components/AuthComponent";
-import { checkIfLoggedIn } from "../functions/firebase";
-
-checkIfLoggedIn();
 ---
 
-<Layout title="login">
+<Layout title="Login">
   <LogInComponent client:load />
 </Layout>
