@@ -31,14 +31,12 @@ const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
   } else if (typeOfInput == "Response") {
     return (
       <div className="inputFieldContainer">
-        <div className="textareaWrap">
-          <textarea
-            type="text"
-            className={typeOfInput.toLowerCase() + "Input inputComponent"}
-            placeholder={typeOfInput}
-            onChange={deleteEmptyClass}
-          />
-        </div>
+        <textarea
+          type="text"
+          className={typeOfInput.toLowerCase() + "Input inputComponent"}
+          placeholder={typeOfInput}
+          onChange={deleteEmptyClass}
+        />
 
         <AddImageButton visible={isVisibleOrNot}></AddImageButton>
         <DeleteFieldButton isVisible={isVisible}></DeleteFieldButton>
