@@ -16,10 +16,6 @@ const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
     e.target.classList.remove("emptyInput");
   }
 
-  function textAreaAdjust(element) {
-    console.log("hola");
-  }
-
   if (typeOfInput == "Command") {
     return (
       <div className="inputFieldContainer">
@@ -41,7 +37,6 @@ const InputFieldAndButtonContainer = ({ typeOfInput, isVisible }) => {
             className={typeOfInput.toLowerCase() + "Input inputComponent"}
             placeholder={typeOfInput}
             onChange={deleteEmptyClass}
-            onKeyUp={textAreaAdjust}
           />
         </div>
 

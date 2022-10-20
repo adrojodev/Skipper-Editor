@@ -72,9 +72,22 @@ export function uploadImages(inputComponent) {
 
   uploadBytes(path, image).then((snapshot) => {
     getDownloadURL(path).then((url) => {
-      inputComponent.parentNode.parentNode.parentNode.getElementsByTagName(
-        "textarea"
-      )[0].value += ` \n\n${String(url)};`;
+      if (
+        inputComponent.parentNode.parentNode.parentNode.getElementsByTagName(
+          "textarea"
+        )[0].value == "" ||
+        inputComponent.parentNode.parentNode.parentNode.getElementsByTagName(
+          "textarea"
+        )[0].value == " "
+      ) {
+        inputComponent.parentNode.parentNode.parentNode.getElementsByTagName(
+          "textarea"
+        )[0].value += `${String(url)}`;
+      } else {
+        inputComponent.parentNode.parentNode.parentNode.getElementsByTagName(
+          "textarea"
+        )[0].value += `\n\n${String(url)}`;
+      }
     });
   });
 }

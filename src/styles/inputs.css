@@ -14,15 +14,9 @@
   gap: 8px;
 }
 textarea {
-  overflow-y: auto;
-  word-wrap: break-word;
-  word-break: break-all;
-  -ms-word-break: break-all;
-  -ms-word-wrap: break-word;
-  resize: vertical;
+  overflow: auto;
 }
-.inputComponent,
-.textareaWrap {
+.inputComponent {
   font-family: "TTCommonsProDemiBold";
   border: none;
   font-size: 16px;
@@ -40,28 +34,6 @@ textarea {
 }
 .inputComponent:focus {
   background-color: #e3e3e3;
-}
-.textareaWrap {
-  display: grid;
-  padding-top: 0px;
-  padding-left: 0px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-}
-.textareaWrap::after {
-  content: attr(data-replicated-value) " ";
-  white-space: pre-wrap;
-  visibility: hidden;
-}
-.textareaWrap > textarea {
-  resize: none;
-  overflow: hidden;
-}
-.textareaWrap > textarea,
-.textareaWrap::after {
-  padding: 0.5rem;
-  font: inherit;
-  grid-area: 1 / 1 / 2 / 2;
 }
 .emptyInput {
   background-color: #ffe0e0;
