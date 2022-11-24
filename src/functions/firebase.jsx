@@ -68,7 +68,7 @@ function uuidv4() {
 
 export function uploadImages(inputComponent) {
   const image = inputComponent.files[0];
-  const path = sRef(storage, `images/${uuidv4()}`);
+  const path = sRef(storage, `${uuidv4()}`);
 
   uploadBytes(path, image).then((snapshot) => {
     getDownloadURL(path).then((url) => {
