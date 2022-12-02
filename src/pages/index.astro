@@ -37,7 +37,7 @@ const { interactions } = await response.json();
         const email = user.email;
         const domain = email.substring(email.lastIndexOf("@") + 1);
 
-        if (domain == "humankind.art") {
+        if (domain == "humankind.art" || domain == "bueno.art") {
           document.body.style.overflow = "auto";
         } else {
           window.location.replace("https://humankind.art");
