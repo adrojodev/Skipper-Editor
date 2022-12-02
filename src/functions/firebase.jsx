@@ -43,7 +43,7 @@ export function login() {
     const user = result.user;
     const email = user.email;
     const domain = email.substring(email.lastIndexOf("@") + 1);
-    if (domain == "humankind.art") {
+    if (domain == "humankind.art" || domain == "bueno.art") {
       window.location.replace("/");
     } else {
       signOut(auth).then(() => {
